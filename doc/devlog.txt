@@ -1,7 +1,5 @@
-chinK -- 14:52
-Created Devlog
 chinK -- 2019-10-18 14:52
+Created Devlog
 
-wanA -- 14:46
-Added login.py from other homework. 
 wanA -- 2019-10-22 14:46
+Added login.py from other homework. 
