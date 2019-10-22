@@ -1,7 +1,5 @@
 # Team PostWaterAmerica - Brandon Chen, Kenneth Chin, Biraj Chowdhury, Albert Wan
 # SoftDev1 pd9
-# K15 -- Do I Know You?
-# 2019-10-04
 
 from flask import Flask
 from flask import render_template
