@@ -1,5 +1,7 @@
-# Team PostWaterAmerica - Brandon Chen, Kenneth Chin, Biraj Chowdhury, Albert Wan
+# Team Krispy Kreme - Kenneth Chin and Kazi Jamal
 # SoftDev1 pd9
+# K15 -- Do I Know You?
+# 2019-10-04
 
 from flask import Flask
 from flask import render_template
@@ -41,14 +43,6 @@ def login():
 # handles login request
 @app.route("/auth", methods=["POST"])
 def auth():
-    print("\n\n\n")
-    print("***DIAG: this Flask obj ***")
-    print(app)
-    print("***DIAG: request obj ***")
-    print(request)
-    print("***DIAG: request.form ***")
-    print(request.form)
-    print("\n\n\n")
     if request.form['username'] == testuser:
         # if correct username/password combination, add username to session and redirect to welcome route
         if request.form['password'] == testpass:
@@ -73,6 +67,11 @@ def error(message):
 def logout():
     session.pop('username')
     return redirect(url_for('root'))
+
+# removes session data for username
+@app.route("/createAccount")
+def createAccount():
+    return render_template("createAccount.html")
 
 
 if __name__ == "__main__":
