@@ -10,8 +10,23 @@ from flask import session
 from flask import redirect
 from flask import url_for
 import os
+import sqlite3
 
 app = Flask(__name__)
+
+DB_FILE="blog.db"
+db = sqlite3.connect(DB_FILE)
+dbcursor = db.cursor()
+
+#Create table
+dbcursor.execute("DROP TABLE IF EXISTS login")
+loginCreateTable = "CREATE TABLE login (username TEXT, password TEXT, displayName TEXT);"
+dbcursor.execute(loginCreateTable)
+c.execute("INSERT INTO login VALUES (?, ?, ?);", ["admin123", "password123", "admin"]) #test login
+
+dbcursor.execute("DROP TABLE IF EXISTS blog")
+blogCreateTable = "CREATE TABLE blog (displayName TEXT, blog TEXT);"
+dbcursor.execute(blogCreateTable)
 
 # creates secret key for session
 app.secret_key = os.urandom(32)
