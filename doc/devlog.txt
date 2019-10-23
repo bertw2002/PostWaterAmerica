@@ -1,8 +1,13 @@
 chinK -- 2019-10-18 14:52
 Created Devlog
 
-wanA -- 2019-10-22 14:46
+wanA -- 2019-10-21 14:46
 Added login.py from other homework. 
 
-chinK -- 2019-10-22 23:35
-Added app.py, and skeleton templates for login and createAccount html files. 
+
+wanA, chinK, chenB -- 2019-10-21 20:34
+SQLite Left Join
+We can use this function as a way to display the user's bog from the entries table. All the blog entries that are not made by a specific user would be NULL which wouldn't be displayed.
+
+
+
