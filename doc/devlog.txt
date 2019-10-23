@@ -7,8 +7,8 @@ Added login.py from other homework.
 
 wanA, chinK, chenB -- 2019-10-21 20:34
 SQLite Left Join
-We can use this function as a way to display the user's bog from the entries table. All the blog entries that are not made by a specific user would be NULL which wouldn't be displayed.
-SQLiter Inner Join
-We can use this function to access data from the entries table using a user's ID. This function looks for a specific value of a heading and returns the specific data required by the coder. 
-
-
+- We can use this function as a way to display the user's bog from the entries table. All the blog entries that are not made by a specific user would be NULL which wouldn't be displayed.
+SQLite Inner Join
+- We can use this function to access data from the entries table using a user's ID. This function looks for a specific value of a heading and returns the specific data required by the coder. 
+SQLite Cross Join
+- We can use this function to merge two tables into one table which has M X N rows where M is the number of rows from one table and N is the number of rows from the other table.
