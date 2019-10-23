@@ -2,10 +2,10 @@
 
 ## Roster:
 
-- Brandon Chen 
+- Brandon Chen (Templates manager)
 
-- Kenneth Chin
+- Kenneth Chin (Database manager)
 
-- Biraj Chowdhury
+- Biraj Chowdhury (Python creator)
 
-- Albert Wan
+- Albert Wan (Project manager)
