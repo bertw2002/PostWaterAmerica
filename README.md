@@ -2,10 +2,10 @@
 
 ## Roster:
 
--Brandon Chen 
+- Brandon Chen 
 
--Kenneth Chin
+- Kenneth Chin
 
--Biraj Chowdhury
+- Biraj Chowdhury
 
--Albert Wan
+- Albert Wan
