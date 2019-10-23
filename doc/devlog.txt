@@ -1,3 +1,4 @@
+
 chinK -- 2019-10-18 14:52
 Created Devlog
 
@@ -16,4 +17,11 @@ SQLite Cross Join
 - We can use this function to merge two tables into one table which has M X N rows where M is the number of rows from one table and N is the number of rows from the other table.
 - This can be used to 
 
-What we will d
+Actions we will take toward being more awesome:
+1. We will better communicate as a team and understand the task at hand so we can develop a better functional final product rather than a makeshift one.
+2. We shouldn't turn to advice and help on the internet as no one really knows the error at hand as there is always error something. In addition, the internet is a dangerous, unreliable, and untrustworthy place to be in (4chan) and it is better to consult classmates and peers.
+3. Breaks are necessary as coding all day will slowly drive you insane. Your brain isn't good at basic logic, much less complex logic. Therefore, rest for your brains are necessary in preventing you from going crazy. The brain functions better with rest as well.
+
+
+chenB -- 2019-19-23 18:27
+Started work on creating database. Created the foundation for the login table but will have to consult for further inquiries with team in regards to blog table.
