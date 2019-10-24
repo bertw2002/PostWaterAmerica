@@ -13,20 +13,20 @@ import os
 import sqlite3
 
 app = Flask(__name__)
-
-DB_FILE="blog.db"
-db = sqlite3.connect(DB_FILE)
-dbcursor = db.cursor()
-
-#Create table
-dbcursor.execute("DROP TABLE IF EXISTS login")
-loginCreateTable = "CREATE TABLE login (username TEXT, password TEXT, displayName TEXT);"
-dbcursor.execute(loginCreateTable)
-c.execute("INSERT INTO login VALUES (?, ?, ?);", ["admin123", "password123", "admin"]) #test login
-
-dbcursor.execute("DROP TABLE IF EXISTS blog")
-blogCreateTable = "CREATE TABLE blog (displayName TEXT, blog TEXT);"
-dbcursor.execute(blogCreateTable)
+#
+# DB_FILE="blog.db"
+# db = sqlite3.connect(DB_FILE)
+# dbcursor = db.cursor()
+#
+# #Create table
+# dbcursor.execute("DROP TABLE IF EXISTS login")
+# loginCreateTable = "CREATE TABLE login (username TEXT, password TEXT, displayName TEXT);"
+# dbcursor.execute(loginCreateTable)
+# dbcursor.execute("INSERT INTO login VALUES (?, ?, ?);", ["admin123", "password123", "admin"]) #test login
+#
+# dbcursor.execute("DROP TABLE IF EXISTS blog")
+# blogCreateTable = "CREATE TABLE blog (displayName TEXT, blog TEXT);"
+# dbcursor.execute(blogCreateTable)
 
 # creates secret key for session
 app.secret_key = os.urandom(32)
@@ -41,7 +41,7 @@ testpass = "12345678"
 def root():
     if "username" in session:
         return redirect(url_for('welcome'))
-    return redirect(url_for('login'))
+    return render_template('homepage.html')
 
 # has logout button to log out
 @app.route("/welcome")
@@ -49,6 +49,11 @@ def welcome():
     if "username" not in session:
         return redirect(url_for('root'))
     return render_template("welcome.html")
+
+# has logout button to log out
+@app.route("/homepage")
+def homepage():
+    return render_template("homepage.html")
 
 # login page with form which sends request to /auth route
 @app.route("/login")
