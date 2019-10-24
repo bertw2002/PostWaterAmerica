@@ -25,3 +25,6 @@ Actions we will take toward being more awesome:
 
 chenB -- 2019-19-23 18:27
 Started work on creating database. Created the foundation for the login table but will have to consult for further inquiries with team in regards to blog table.
+
+wanA -- 2019-10-24 14:45
+I made the homepage and fixed some spelling errors and techinical errors which made the buttons direct to other pages that don't have any correlation. I took out the databases because there was a locked error which Brandon later fixed. The project is starting to look more like the site map.
