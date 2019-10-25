@@ -1,7 +1,6 @@
-# Team Krispy Kreme - Kenneth Chin and Kazi Jamal
+# PWA- chenB, chinK, chowdhuryB, wanA
 # SoftDev1 pd9
-# K15 -- Do I Know You?
-# 2019-10-04
+
 
 from flask import Flask
 from flask import render_template
@@ -11,6 +10,7 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
+
 from utl.dbFunctions import create , addUser
 
 app = Flask(__name__)
@@ -102,7 +102,7 @@ def checkCreate():
     for user in users:
         usedUser = user[0]
         if request.args['username'] == usedUser:
-            return render_template("createAccountAltUser")
+            return render_template("createAccountAltUser.html")
     if (request.args['password'] == request.args['confirmPassword']):
         addUser(request.args['username'],request.args['displayName'],request.args['password'])
         session['username'] = request.args['username']

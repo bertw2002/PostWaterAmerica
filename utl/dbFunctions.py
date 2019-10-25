@@ -1,61 +1,35 @@
-# Jun Tao Lei & Kenneth Chin
+# PWA- chenB, chinK, chowdhuryB, wanA
 # SoftDev1 pd9
-# K#17 - No Trouble
-# 2019-10-07
+# This file contains all the functions for the databases
 
 from sqlite3 import connect, Row
-# from csvrw import insertAll, printTable
 
-# Setup the database
-DB_FILE = "blogs.db"
-
-db = connect(DB_FILE)
-db.row_factory = Row
-c = db.cursor()
-
+#creates the tables users and topics
 def create():
     # Setup the database
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     db.row_factory = Row
     c = db.cursor()
-    q = "CREATE TABLE IF NOT EXISTS users(username TEXT, displayName TEXT,password INT)"
-    b = "CREATE TABLE IF NOT EXISTS topics(blogNumber INT, blogTopic TEXT, creator TEXT)"
+    q = "CREATE TABLE IF NOT EXISTS users(username TEXT, displayName TEXT,password TEXT)"
+    b = "CREATE TABLE IF NOT EXISTS topics(blogNumber INT, blogTopic TEXT, entry TEXT, creator TEXT)"
     c.execute(q)
     c.execute(b)
     db.commit()
     db.close()
 
-def addUser(username, displayName, password):
+def addUser(username,displayName,password):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
-    db.row_factory = Row
     c = db.cursor()
-    q = "INSERT INTO users VALUES( ?, ?, ?)"
-    c.execute(q,(str(username),str(displayName),str(password)))
+    c.execute("INSERT INTO users VALUES (?, ?, ?)", (str(username), str(displayName), str(password)))
     db.commit()
     db.close()
 
-  # tbl_headers = " (" + ",".join("{0} BLOB".format(header) for header in headers) + ")"
-  # db.execute("CREATE TABLE IF NOT EXISTS " + tbl_name + tbl_headers)
-
-# # Add the csv and create a table to store the csv if it does not exist
-# insertAll("data/courses.csv", "courses", db)
-# insertAll("data/students.csv", "students", db)
-#
-# # Print the database
-# print("courses table")
-# printTable("courses", c)
-# print("\nstudents table")
-# printTable("students", c)
-# q = """SELECT name, students.id, mark
-# FROM students, courses
-# WHERE students.id = courses.id;"""
-
-# q = "CREATE TABLE IF NOT EXISTS users(password INT,username TEXT, displayName TEXT)"
-# b =   "CREATE TABLE IF NOT EXISTS topics(blogTopic TEXT, creator TEXT, blogNumber INT)"
-# c.execute(q)
-# c.execute(b)
-# Save and exit the database
-db.commit()
-db.close()
+def addBlog(blogNumber, blogTopic, entry, creator):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    c.execute("INSERT INTO users VALUES (?, ?, ?,?)", (str(blogNumber), str(blogTopic), str(entry), str(creator)))
+    db.commit()
+    db.close()
