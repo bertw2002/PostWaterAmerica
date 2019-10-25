@@ -31,8 +31,8 @@ def addUser(username, displayName, password):
     db = connect(DB_FILE)
     db.row_factory = Row
     c = db.cursor()
-    q = "INSERT INTO users(username, displayName,password) VALUES(" +  username + "," + displayName + "," + password + ")"
-    c.execute(q)
+    q = "INSERT INTO users VALUES( ?, ?, ?)"
+    c.execute(q,(str(username),str(displayName),str(password)))
     db.commit()
     db.close()
 

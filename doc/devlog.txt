@@ -1,4 +1,3 @@
-
 chinK -- 2019-10-18 14:52
 Created Devlog
 
@@ -34,3 +33,8 @@ Added 2 links that you will see when you logged in. One will be to create a topi
 
 chinK -- 2019- 22:54
 Added utl folder which will contain all the functions needed to add data into the databases. THe functions will be in dbfunctions. I added testFunctions so I can test the functions without using flask. I was able to add Create function which creates the table and addUser which will add a user to the users tables. 
+
+
+chowdhuryB -- 2019- 00:25
+
+Added to checkCreate function so that it goes through the existing users and prevents creation of accounts with duplicate usernames

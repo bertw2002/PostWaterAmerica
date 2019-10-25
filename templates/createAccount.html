@@ -6,8 +6,10 @@
   </head>
   <body>
     <h1>BlogHub</h1>
-
+    <br>
+    <h3>Register For a New Account"</h3>
     <form action="/checkCreate" method="GET">
+      {% block userError %}{% endblock %}
       <label for="username">Username</label>
       <input type="text" name="username">
       <br>
