@@ -10,7 +10,7 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
-from utl.dbFunctions import create, addUser
+from utl.dbFunctions import create, addUser, checkUsername
 
 app = Flask(__name__)
 create()
@@ -98,7 +98,7 @@ def createTopic():
 def checkCreate():
     #needs to loop through table to check if username is unique CHECK IF USERNAME IS UNIQUE
     # if request.args['username'] == "username" and request.args['password'] == request.args['confirmPassword']:
-    if request.args['password'] == request.args['confirmPassword']:
+    if checkUsername(request.args['username']) and request.args['password'] == request.args['confirmPassword']:
         addUser(request.args['username'], request.args['displayName'], request.args['password'])
         return render_template("welcome.html")
     else:

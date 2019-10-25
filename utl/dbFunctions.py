@@ -33,3 +33,18 @@ def addBlog(blogNumber, blogTopic, entry, creator):
     c.execute("INSERT INTO users VALUES (?, ?, ?,?)", (str(blogNumber), str(blogTopic), str(entry), str(creator)))
     db.commit()
     db.close()
+def checkUsername(username):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT username FROM users")
+    usernames = cur.fetchall()
+    for row in usernames:
+        if "a" in row:
+            return True
+        else:
+            return False
+    db.commit()
+    db.close()
+create()
+# check()
