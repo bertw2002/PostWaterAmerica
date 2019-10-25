@@ -94,6 +94,13 @@ def createAccount():
     return render_template("createAccount.html")
 
 
+# To view other people's blogs
+@app.route("/otherBlog")
+def otherBlog():
+    #create dictionary to transfer data to html
+    
+    return render_template("otherBlog.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
