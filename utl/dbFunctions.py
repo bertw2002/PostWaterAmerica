@@ -33,20 +33,25 @@ def addBlog(blogNumber, blogTopic, entry, creator):
     c.execute("INSERT INTO users VALUES (?, ?, ?,?)", (str(blogNumber), str(blogTopic), str(entry), str(creator)))
     db.commit()
     db.close()
-#
-# def verifyUser(username, password):
-#     DB_FILE = "blogs.db"
-#     db = connect(DB_FILE)
-#     c = db.cursor()
-#     print (checkUsername(username))
-#     if checkUsername(username):
-#         print ("SELECT password FROM users where username = (?)",(str(username)))
-#         print ()"INSERT INTO users VALUES (?, ?, ?,?)", (str(blogNumber), str(blogTopic), str(entry), str(creator)))
-#         # if (password == c.execute("SELECT password FROM users where username = (?)",(str(username)))):
-#         #     print ("pass")
-#
-#     db.commit()
-#     db.close()
+
+def verifyUser(username, password):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+
+    if checkUsername(username):
+        cur = c.execute("SELECT password FROM users WHERE username = ?", (str(username),))
+        userPassword = cur.fetchall()
+        for row in userPassword:
+            if password in row:
+                return True
+            else:
+                return False
+    else:
+         return False
+
+    db.commit()
+    db.close()
 
 def checkUsername(username):
     DB_FILE = "blogs.db"
@@ -61,5 +66,7 @@ def checkUsername(username):
     db.close()
 create()
 # check()
-# addUser("test","password","test")
-# verifyUser("test","password")
+# addUser("test","asdfd","password")
+# print(verifyUser("test","password"))
+# print(verifyUser("test","asdf"))
+# print(verifyUser("asdf","asdf"))
