@@ -23,8 +23,11 @@ Actions we will take toward being more awesome:
 3. Breaks are necessary as coding all day will slowly drive you insane. Your brain isn't good at basic logic, much less complex logic. Therefore, rest for your brains are necessary in preventing you from going crazy. The brain functions better with rest as well.
 
 
-chenB -- 2019-19-23 18:27
+chenB -- 2019-10-23 18:27
 Started work on creating database. Created the foundation for the login table but will have to consult for further inquiries with team in regards to blog table.
 
 wanA -- 2019-10-24 14:45
 I made the homepage and fixed some spelling errors and techinical errors which made the buttons direct to other pages that don't have any correlation. I took out the databases because there was a locked error which Brandon later fixed. The project is starting to look more like the site map.
+
+chenB -- 2019-10-24 9:40
+Added 2 links that you will see when you logged in. One will be to create a topic and the other is to see other blogs. I was able to have the createTopic.html ask for a topic and entry. Once submitted, it will bring the user back to the page with all of the user's topics (also the page you first see when you logged in). OtherBlog.html is empty but will start working on it once there is a table to display blogs with.
