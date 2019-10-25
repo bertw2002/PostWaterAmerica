@@ -42,3 +42,6 @@ chowdhuryB -- 2019- 07:43
 Added to checkCreate function so that it goes through the existing users and prevents creation of accounts with duplicate usernames
 
 
+chinK -- 2019-10-25 14:02
+added verifyUser functino to test if the user and password match to the creditionals in the users tables. Also fixed html to print correct text if the username is taken or if the passwords do not match
+
