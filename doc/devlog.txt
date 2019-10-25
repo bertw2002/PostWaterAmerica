@@ -31,3 +31,6 @@ I made the homepage and fixed some spelling errors and techinical errors which m
 
 chenB -- 2019-10-24 9:40
 Added 2 links that you will see when you logged in. One will be to create a topic and the other is to see other blogs. I was able to have the createTopic.html ask for a topic and entry. Once submitted, it will bring the user back to the page with all of the user's topics (also the page you first see when you logged in). OtherBlog.html is empty but will start working on it once there is a table to display blogs with.
+
+chinK -- 2019- 22:54
+Added utl folder which will contain all the functions needed to add data into the databases. THe functions will be in dbfunctions. I added testFunctions so I can test the functions without using flask. I was able to add Create function which creates the table and addUser which will add a user to the users tables. 
