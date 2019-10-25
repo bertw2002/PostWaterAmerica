@@ -37,3 +37,4 @@ Added utl folder which will contain all the functions needed to add data into th
 
 chinK -- 2019-10-25 00:25
 fixed addUser so that everytime the form for createAccount is submitted, the user input gets added to the database
+added checkUsername function to test if username is taken
