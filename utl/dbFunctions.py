@@ -34,7 +34,7 @@ def addBlog(blogNumber, blogTopic, entry, creator):
     db.commit()
     db.close()
 
-def verifyUser(username, password):
+def checkUser(username, password):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     c = db.cursor()

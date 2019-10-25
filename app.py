@@ -10,7 +10,7 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
-from utl.dbFunctions import create, addUser, checkUsername
+from utl.dbFunctions import create, addUser, checkUsername, checkUser
 
 
 app = Flask(__name__)
@@ -52,9 +52,9 @@ def login():
 # handles login request
 @app.route("/auth", methods=["POST"])
 def auth():
-    if request.form['username'] == testuser:
+    if checkUsername(request.form['username']):
         # if correct username/password combination, add username to session and redirect to welcome route
-        if request.form['password'] == testpass:
+        if checkUser(request.form['username'], request.form['password']):
             session['username'] = request.form['username']
             return redirect(url_for('welcome'))
         # if invalid password return error
