@@ -64,6 +64,18 @@ def checkUsername(username):
             return True
     db.commit()
     db.close()
+
+def createTable(topic):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT username FROM users")
+    usernames = cur.fetchall()
+    for row in usernames:
+        if username in row:
+            return True
+    db.commit()
+    db.close()
 create()
 # check()
 # addUser("test","asdfd","password")
