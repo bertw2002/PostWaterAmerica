@@ -11,22 +11,10 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
+from utl.dbFunctions import create
 
 app = Flask(__name__)
-#
-# DB_FILE="blog.db"
-# db = sqlite3.connect(DB_FILE)
-# dbcursor = db.cursor()
-#
-# #Create table
-# dbcursor.execute("DROP TABLE IF EXISTS login")
-# loginCreateTable = "CREATE TABLE login (username TEXT, password TEXT, displayName TEXT);"
-# dbcursor.execute(loginCreateTable)
-# dbcursor.execute("INSERT INTO login VALUES (?, ?, ?);", ["admin123", "password123", "admin"]) #test login
-#
-# dbcursor.execute("DROP TABLE IF EXISTS blog")
-# blogCreateTable = "CREATE TABLE blog (displayName TEXT, blog TEXT);"
-# dbcursor.execute(blogCreateTable)
+create()
 
 # creates secret key for session
 app.secret_key = os.urandom(32)
@@ -42,6 +30,7 @@ def root():
     if "username" in session:
         return redirect(url_for('welcome'))
     return render_template('homepage.html')
+
 
 # has logout button to log out
 @app.route("/welcome")
