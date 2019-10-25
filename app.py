@@ -10,8 +10,8 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
+from utl.dbFunctions import create, addUser, checkUsername
 
-from utl.dbFunctions import create , addUser
 
 app = Flask(__name__)
 create()
@@ -97,6 +97,7 @@ def createTopic():
 
 @app.route("/checkCreate")
 def checkCreate():
+<<<<<<< HEAD
     c.execute("SELECT username FROM users")
     users = c.fetchall()
     for user in users:

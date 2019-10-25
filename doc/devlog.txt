@@ -36,9 +36,13 @@ Added utl folder which will contain all the functions needed to add data into th
 
 chinK -- 2019-10-25 00:25
 fixed addUser so that everytime the form for createAccount is submitted, the user input gets added to the database
+<<<<<<< HEAD
 
 
 chowdhuryB -- 2019- 07:43
 
 Added to checkCreate function so that it goes through the existing users and prevents creation of accounts with duplicate usernames
 >>>>>>> 29f7ed5e2d7676cb80046e419423565740210cc0
+=======
+added checkUsername function to test if username is taken
+>>>>>>> 0b50294dd0fb4c2e0328456a2726aea4778392bb
