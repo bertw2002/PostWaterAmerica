@@ -13,7 +13,7 @@
 ## To Run the Project
 
 - You will need python3 and flask in your virtual envrionment
-- After installing python3, you can install flask by running the command 'pip3 install flask'
+- After installing python3, you can install flask by running the command `pip3 install flask`
 
 ## Navigating the webpage
 - You will need to create an account in order to post blogs.
