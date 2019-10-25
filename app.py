@@ -106,6 +106,14 @@ def otherBlog():
 def createTopic():
     return render_template("createTopic.html")
 
+@app.route("/checkCreate")
+def checkCreate():
+    #needs to loop through table to check if username is unique
+    if username == "username" and password == confirmPassword:
+        return render_template("/login")
+    else:
+        return render_template("/createAccount")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
