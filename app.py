@@ -109,10 +109,10 @@ def createTopic():
 @app.route("/checkCreate")
 def checkCreate():
     #needs to loop through table to check if username is unique
-    if username == "username" and password == confirmPassword:
-        return render_template("/login")
+    if request.args['username'] == "username" and request.args['password'] == request.args['confirmPassword']:
+        return render_template("welcome.html")
     else:
-        return render_template("/createAccount")
+        return render_template("createAccount.html")
 
 if __name__ == "__main__":
     app.debug = True
