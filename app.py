@@ -98,8 +98,13 @@ def createAccount():
 @app.route("/otherBlog")
 def otherBlog():
     #create dictionary to transfer data to html
-    
+
     return render_template("otherBlog.html")
+
+# To create a topic
+@app.route("/createTopic")
+def createTopic():
+    return render_template("createTopic.html")
 
 if __name__ == "__main__":
     app.debug = True
