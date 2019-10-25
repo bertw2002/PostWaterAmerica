@@ -1,7 +1,6 @@
-# Team Krispy Kreme - Kenneth Chin and Kazi Jamal
+# PWA- chenB, chinK, chowdhuryB, wanA
 # SoftDev1 pd9
-# K15 -- Do I Know You?
-# 2019-10-04
+
 
 from flask import Flask
 from flask import render_template
@@ -11,7 +10,7 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
-from utl.dbFunctions import create
+from utl.dbFunctions import create, addUser
 
 app = Flask(__name__)
 create()
@@ -97,10 +96,13 @@ def createTopic():
 
 @app.route("/checkCreate")
 def checkCreate():
-    #needs to loop through table to check if username is unique
-    if request.args['username'] == "username" and request.args['password'] == request.args['confirmPassword']:
+    #needs to loop through table to check if username is unique CHECK IF USERNAME IS UNIQUE
+    # if request.args['username'] == "username" and request.args['password'] == request.args['confirmPassword']:
+    if request.args['password'] == request.args['confirmPassword']:
+        addUser(request.args['username'], request.args['displayName'], request.args['password'])
         return render_template("welcome.html")
     else:
+        print ("bye")
         return render_template("createAccount.html")
 
 if __name__ == "__main__":
