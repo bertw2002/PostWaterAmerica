@@ -40,7 +40,7 @@ def checkUsername(username):
     cur = c.execute("SELECT username FROM users")
     usernames = cur.fetchall()
     for row in usernames:
-        if "a" in row:
+        if username in row:
             return True
         else:
             return False

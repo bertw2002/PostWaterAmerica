@@ -97,17 +97,12 @@ def createTopic():
 
 @app.route("/checkCreate")
 def checkCreate():
-
-    c.execute("SELECT username FROM users")
-    users = c.fetchall()
-    for user in users:
-        usedUser = user[0]
-        if request.args['username'] == usedUser:
+    if checkUsername(request.args['username']):
             return render_template("createAccountAltUser.html")
     if (request.args['password'] == request.args['confirmPassword']):
         addUser(request.args['username'],request.args['displayName'],request.args['password'])
         session['username'] = request.args['username']
-        return render_template("welcome.html")
+        return render_template("login.html")
     else:
         return render_template("createAccount.html")
 
