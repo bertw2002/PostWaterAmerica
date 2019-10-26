@@ -101,7 +101,6 @@ def checkCreate():
             return render_template("createAccount.html", userError = "***That username is already in use, try a different one")
     if (request.args['password'] == request.args['confirmPassword']):
         addUser(request.args['username'],request.args['displayName'],request.args['password'])
-        session['username'] = request.args['username']
         return render_template("login.html")
     else:
         return render_template("createAccount.html", userError = "***Passwords don't match")
