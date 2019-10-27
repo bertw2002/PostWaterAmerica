@@ -98,11 +98,7 @@ def showEntries(blognumber):
     db.commit()
     db.close()
     entries = []
-<<<<<<< HEAD
-=======
     allEntries = cur.fetchall()
-
->>>>>>> 08dcbc6a8652be97cf952e439b7779346274413f
     for entry in allEntries:
         entries.append(entry)
     return entries
