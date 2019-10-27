@@ -105,6 +105,9 @@ def searchedBlogs():
 def createTopic():
     return render_template("createTopic.html")
 
+@app.route("/topicCreated")
+def creationOfTopic():
+    
 @app.route("/checkCreate")
 def checkCreate():
     if checkUsername(request.args['username']):

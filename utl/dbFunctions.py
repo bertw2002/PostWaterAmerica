@@ -15,7 +15,7 @@ def create():
     db.row_factory = Row
     c = db.cursor()
     q = "CREATE TABLE IF NOT EXISTS users(username TEXT, displayName TEXT,password TEXT)"
-    b = "CREATE TABLE IF NOT EXISTS blogs(blogNumber INT, blogTopic TEXT, entry TEXT, creator TEXT)"
+    b = "CREATE TABLE IF NOT EXISTS blogs(blogNumber INT, blogName TEXT, entry TEXT, creator TEXT)"
     c.execute(q)
     c.execute(b)
     db.commit()
@@ -35,7 +35,7 @@ def addBlog(blogTopic, entry, creator):
     c = db.cursor()
     global numBlog;
     c.execute("INSERT INTO users VALUES (?, ?, ?,?)", (int(numBlog)), (str(blogNumber), str(blogTopic), str(entry), str(creator)))
-    numBlog++
+    numBlog+=1
     db.commit()
     db.close()
 
@@ -70,22 +70,44 @@ def checkUsername(username):
     db.commit()
     db.close()
 
-def createTable(topic):
-    DB_FILE = "blogs.db"
-    db = connect(DB_FILE)
-    c = db.cursor()
-    cur = c.execute("SELECT username FROM users")
-    usernames = cur.fetchall()
-    for row in usernames:
-        if username in row:
-            return True
-    db.commit()
-    db.close()
-
 def showEntries(blognumber):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     c = db.cursor()
+    cur = c.execute("SELECT entry FROM blogs WHERE blogNumber = ?",blognumber)
+    db.commit()
+    db.close()
+    entries = []
+    allEntries = cur.fetchall()
+    
+    for entry in allEntries:
+        entries.append(entry)
+    return entries
+
+def getBlogNumber(username,blogtitle):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT blogNumber FROM blogs WHERE blogName = ? AND creator = ?",(str(blogtitle)),(str(username)))
+    num = cur.fetchall()
+    db.commit()
+    db.close()
+    return num[0][0]
+
+def yourBlogs(username):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT blogName FROM blogs WHERE creator = ?",(str(username),))
+    yourBlogs =[]
+    yourBlogS = cur.fetchall()
+    db.commit()
+    db.close()
+    for blog in yourBlogS:
+        yourBlogs.append(blog[0])
+    return yourBlogs
+        
+    
 create()
 # check()
 # addUser("test","asdfd","password")

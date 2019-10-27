@@ -7,7 +7,12 @@
   </head>
   <body>
     <h1>Your Blog Topics</h1>
-
+    {% for blog in yourBlogs %}
+    <form action="/yourBlog" Method="POST">
+      <input type= "submit" name = "blogName" value = {{ blog }}>
+    </form>
+     <br>
+    {% endfor %}
       <a href="createTopic">Create a Topic</a> <br> <br>
 
       <a href="otherBlog">Look At Other Blogs</a>
