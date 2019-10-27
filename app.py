@@ -93,10 +93,11 @@ def otherBlog():
     #create dictionary to transfer data to html
     return render_template("otherBlog.html")
 
-View Blogs that match your search
+#View Blogs that match your search
 @app.route("/blogsYouSearched")
-#def searchedBlogs():
-#    yourSearch= request.args[yourSearch]
+def searchedBlogs():
+    yourSearch= request.args['yourSearch']
+    return
 
 # To create a topic
 @app.route("/createTopic")
