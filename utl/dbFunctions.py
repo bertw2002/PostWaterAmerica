@@ -98,6 +98,11 @@ def showEntries(blognumber):
     db.commit()
     db.close()
     entries = []
+<<<<<<< HEAD
+=======
+    allEntries = cur.fetchall()
+
+>>>>>>> 08dcbc6a8652be97cf952e439b7779346274413f
     for entry in allEntries:
         entries.append(entry)
     return entries
@@ -127,8 +132,23 @@ def yourBlogs(username):
         print(blog[0])
         yourBlogs.append(blog[0])
     return yourBlogs
-        
-    
+
+def createOtherBlogList(user):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT blogNumber,blogName FROM blogs WHERE creator != ?;", [str(user)])
+    allBlogsButUser = cur.fetchall()
+    return allBlogsButUser
+
+def get(ID, topic):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT * FROM blogs WHERE blogNumber == ? and blogName == ?;", [str(ID), str(topic)])
+    info = cur.fetchone()
+    return info
+
 create()
 # check()
 # addUser("test","asdfd","password")

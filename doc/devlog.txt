@@ -49,3 +49,9 @@ chowdhuryB -- 2019 -12:20
 added to dbFunctions and app.py, allowing user to view their blogs, implementing jinja to allow the blog page to display all entries in that blog
 added to welcome page so that all of the user's blogs are displayed
 
+chenB -- 2019-10-27 2:15
+Worked on displaying other users' blogs. Was able to display all blogs other then the current user and provided a submit button at first for selection. The submit button didn't work out so using links instead. Redirecting after clicking on the user's blog works and in the middle of transferring data from html to python.
+
+chowdhuryB --2019 -13:51
+Added back to blogs button when viewing your blog
+Fixed bugs when viewing your blogs 
