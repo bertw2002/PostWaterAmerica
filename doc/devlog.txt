@@ -45,3 +45,7 @@ Added to checkCreate function so that it goes through the existing users and pre
 chinK -- 2019-10-25 14:02
 added verifyUser functino to test if the user and password match to the creditionals in the users tables. Also fixed html to print correct text if the username is taken or if the passwords do not match
 
+chowdhuryB -- 2019 -12:20
+added to dbFunctions and app.py, allowing user to view their blogs, implementing jinja to allow the blog page to display all entries in that blog
+added to welcome page so that all of the user's blogs are displayed
+

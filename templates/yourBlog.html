@@ -3,14 +3,21 @@
 <html>
   <center>
     <head>
-      <title>{{topic}}</title>
+      <title>
+	{{topic}}
+      </title>
     </head>
     <body>
-      <br>
+      <h3>
+	{{topic}}
+      </h3>
       {% for entry in topicEntries %}
           {{entry}}
           <br>
-      {% endfor %}
+	  {% endfor %}
+	  <form action="/welcome">
+	    <input type ="submit" name="exit" value="Back To Your Blogs">
+	  </form>
     </body>
   </center>
 <html>

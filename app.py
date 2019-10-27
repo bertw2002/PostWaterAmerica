@@ -10,7 +10,7 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
-from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs
+from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog
 
 app = Flask(__name__)
 create()
@@ -32,7 +32,9 @@ def root():
 def welcome():
     if "username" not in session:
         return redirect(url_for('root'))
-    blogs = yourBlogs(session['username'])
+    username = session.get('username')
+    blogs = yourBlogs(username)
+    print(blogs)
     return render_template("welcome.html",yourBlogs = blogs)
 
 # has logout button to log out
@@ -78,16 +80,6 @@ def logout():
 def createAccount():
     return render_template("createAccount.html")
 
-#View one of your blogs
-@app.route("/yourBlog", methods = ["POST"])
-def yourBlog():
-    username = session['username']
-    blogName = request.form['blogName']
-    blogNum = getBlogNumber(username,blogName)
-    entries = showEntries(blogNum)
-    render_template("yourBlog.html",topic = blogName,topicEntries = entries)
-    
-
 # To view other people's blogs
 @app.route("/otherBlog")
 def otherBlog():
@@ -98,12 +90,8 @@ def otherBlog():
 @app.route("/blogsYouSearched")
 def searchedBlogs():
     yourSearch= request.args['yourSearch']
-    return
+    return 
 
-# To create a topic
-@app.route("/createTopic")
-def createTopic():
-    return render_template("createTopic.html")
 
 @app.route("/checkCreate")
 def checkCreate():
@@ -111,11 +99,34 @@ def checkCreate():
             return render_template("createAccount.html", userError = "***That username is already in use, try a different one")
     if (request.args['password'] == request.args['confirmPassword']):
         addUser(request.args['username'],request.args['displayName'],request.args['password'])
-        session['username'] = request.args['username']
         return render_template("login.html")
     else:
         return render_template("createAccount.html", userError = "***Passwords don't match")
 
+# To create a topic
+@app.route("/createTopic")
+def createTopic():
+    print(session)
+    return render_template("createTopic.html")
+    
+#View one of your blogs
+@app.route("/yourBlog",methods=["POST","GET"])
+def yourBlog():
+    print(request.form)
+    print(session)
+    username = session.get('username')
+    blogName = request.form.get('blogName')
+    if noRepeatBlogs(username,blogName):
+        if 'newEntry' in request.form.keys():
+            entry = request.form['newEntry']
+            addBlog(blogName,entry,username)
+    else :
+        return redirect(url_for('createTopic'))
+    blogNum = getBlogNumber(username,blogName)
+    entries = showEntries(blogNum)
+    return render_template("yourBlog.html",topic = blogName,topicEntries = entries)
+
+    
 if __name__ == "__main__":
     app.debug = True
     app.run()

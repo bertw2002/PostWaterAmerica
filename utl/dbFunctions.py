@@ -5,7 +5,6 @@
 from sqlite3 import connect, Row
 
 #global varible to hold next blog Number for the next new topic created
-numBlogs = 0
 
 #creates the tables users and topics
 def create():
@@ -33,9 +32,13 @@ def addBlog(blogTopic, entry, creator):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     c = db.cursor()
-    global numBlog;
-    c.execute("INSERT INTO users VALUES (?, ?, ?,?)", (int(numBlog)), (str(blogNumber), str(blogTopic), str(entry), str(creator)))
-    numBlog+=1
+    cur = c.execute("SELECT MAX(blogNumber) FROM blogs")
+    allBlogNumbers = cur.fetchall()
+    blogNumber = 0;
+    for blognum in allBlogNumbers:
+        if (len(allBlogNumbers) != 0):
+            blogNumber = blognum[0] + 1
+    c.execute("INSERT INTO blogs VALUES (?, ?, ?,?)", (int(blogNumber), str(blogTopic), str(entry), str(creator)))
     db.commit()
     db.close()
 
@@ -47,6 +50,8 @@ def checkUser(username, password):
     if checkUsername(username):
         cur = c.execute("SELECT password FROM users WHERE username = ?", (str(username),))
         userPassword = cur.fetchall()
+        db.commit()
+        db.close()
         for row in userPassword:
             if password in row:
                 return True
@@ -55,8 +60,20 @@ def checkUser(username, password):
     else:
          return False
 
+
+
+def noRepeatBlogs(username,blogName):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT blogName FROM blogs WHERE creator = ?",(str(username),))
+    yourBlogs = cur.fetchall()
     db.commit()
-    db.close()
+    db.close()  
+    for blog in yourBlogs:
+        if blogName == blog:
+            return False
+    return True
 
 def checkUsername(username):
     DB_FILE = "blogs.db"
@@ -64,22 +81,23 @@ def checkUsername(username):
     c = db.cursor()
     cur = c.execute("SELECT username FROM users")
     usernames = cur.fetchall()
+    db.commit()
+    db.close()
     for row in usernames:
         if username in row:
             return True
-    db.commit()
-    db.close()
+    return False
+
 
 def showEntries(blognumber):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     c = db.cursor()
-    cur = c.execute("SELECT entry FROM blogs WHERE blogNumber = ?",blognumber)
+    cur = c.execute("SELECT entry FROM blogs WHERE blogNumber = ?",(int(blognumber),))
+    allEntries = cur.fetchall()
     db.commit()
     db.close()
     entries = []
-    allEntries = cur.fetchall()
-    
     for entry in allEntries:
         entries.append(entry)
     return entries
@@ -88,10 +106,11 @@ def getBlogNumber(username,blogtitle):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     c = db.cursor()
-    cur = c.execute("SELECT blogNumber FROM blogs WHERE blogName = ? AND creator = ?",(str(blogtitle)),(str(username)))
+    cur = c.execute("SELECT blogNumber FROM blogs WHERE blogName = ? AND creator = ?",(str(blogtitle),str(username)))
     num = cur.fetchall()
     db.commit()
     db.close()
+    print(num)
     return num[0][0]
 
 def yourBlogs(username):
@@ -103,7 +122,9 @@ def yourBlogs(username):
     yourBlogS = cur.fetchall()
     db.commit()
     db.close()
+    print(yourBlogS)
     for blog in yourBlogS:
+        print(blog[0])
         yourBlogs.append(blog[0])
     return yourBlogs
         
