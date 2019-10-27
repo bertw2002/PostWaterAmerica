@@ -85,15 +85,6 @@ def logout():
 def createAccount():
     return render_template("createAccount.html")
 
-#View one of your blogs
-@app.route("/yourBlog", methods = ["POST"])
-def yourBlog():
-    username = session['username']
-    blogName = request.form['blogName']
-    blogNum = getBlogNumber(username,blogName)
-    entries = showEntries(blogNum)
-    render_template("yourBlog.html",topic = blogName,topicEntries = entries)
-
 # To view other people's blogs
 @app.route("/otherBlog")
 def otherBlog():
