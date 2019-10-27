@@ -45,3 +45,5 @@ Added to checkCreate function so that it goes through the existing users and pre
 chinK -- 2019-10-25 14:02
 added verifyUser functino to test if the user and password match to the creditionals in the users tables. Also fixed html to print correct text if the username is taken or if the passwords do not match
 
+chenB -- 2019-10-27 2:15
+Worked on displaying other users' blogs. Was able to display all blogs other then the current user and provided a submit button at first for selection. The submit button didn't work out so using links instead. Redirecting after clicking on the user's blog works and in the middle of transferring data from html to python.
