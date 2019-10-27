@@ -12,7 +12,6 @@ import os
 import sqlite3
 from utl.dbFunctions import create, addUser, checkUsername, checkUser
 
-
 app = Flask(__name__)
 create()
 
@@ -82,16 +81,22 @@ def logout():
 def createAccount():
     return render_template("createAccount.html")
 
-
+#View one of your blogs
 @app.route("/yourBlog")
 def yourBlog():
-    return
+    render_template("yourBlog.html")
+    
 
 # To view other people's blogs
 @app.route("/otherBlog")
 def otherBlog():
     #create dictionary to transfer data to html
     return render_template("otherBlog.html")
+
+View Blogs that match your search
+@app.route("/blogsYouSearched")
+#def searchedBlogs():
+#    yourSearch= request.args[yourSearch]
 
 # To create a topic
 @app.route("/createTopic")
