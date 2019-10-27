@@ -7,19 +7,22 @@
   </head>
   <body>
     <h1>Your Blog Topics</h1>
+    <div class="topnav">
+      <a href="welcome">Home</a>
+      <a href="createTopic">Create a Topic</a>
+      <a href="otherBlog">Look At Other Blogs</a>
+      <a href="logout">Log Out</a>
+
+</div>
+<br>
+<br>
     {% for blog in yourBlogs %}
     <form action="/yourBlog" Method="POST">
       <input type= "submit" name = "blogName" value = "{{blog}}">
     </form>
      <br>
      {% endfor %}
-      <a href="createTopic">Create a Topic</a> <br> <br>
 
-      <a href="otherBlog">Look At Other Blogs</a>
-
-    <form action="/logout">
-        <input type="submit" name="logout-button" value="Log Out">
-    </form>
   </body>
 </center>
 </html>
