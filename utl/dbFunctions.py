@@ -111,7 +111,7 @@ def createOtherBlogList(user):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     c = db.cursor()
-    cur = c.execute("SELECT blogNumber,blogTopic FROM blogs WHERE creator != ?;", [str(user)])
+    cur = c.execute("SELECT blogNumber,blogName FROM blogs WHERE creator != ?;", [str(user)])
     allBlogsButUser = cur.fetchall()
     return allBlogsButUser
 
@@ -119,7 +119,7 @@ def get(ID, topic):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
     c = db.cursor()
-    cur = c.execute("SELECT * FROM blogs WHERE blogNumber == ? and blogTopic == ?;", [str(ID), str(topic)])
+    cur = c.execute("SELECT * FROM blogs WHERE blogNumber == ? and blogName == ?;", [str(ID), str(topic)])
     info = cur.fetchone()
     return info
 
