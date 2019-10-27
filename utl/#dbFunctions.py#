@@ -3,6 +3,7 @@
 # This file contains all the functions for the databases
 
 from sqlite3 import connect, Row
+
 #global varible to hold next blog Number for the next new topic created
 numBlogs = 0
 
@@ -33,7 +34,7 @@ def addBlog(blogTopic, entry, creator):
     db = connect(DB_FILE)
     c = db.cursor()
     global numBlog;
-    c.execute("INSERT INTO users VALUES (?, ?, ?,?)", int(numBlog, (str(blogNumber), str(blogTopic), str(entry), str(creator)))
+    c.execute("INSERT INTO users VALUES (?, ?, ?,?)", (int(numBlog)), (str(blogNumber), str(blogTopic), str(entry), str(creator)))
     numBlog++
     db.commit()
     db.close()
@@ -80,6 +81,11 @@ def createTable(topic):
             return True
     db.commit()
     db.close()
+
+def showEntries(blognumber):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    
 create()
 # check()
 # addUser("test","asdfd","password")
