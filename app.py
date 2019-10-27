@@ -10,13 +10,15 @@ from flask import redirect
 from flask import url_for
 import os
 import sqlite3
-from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs
+from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,createOtherBlogList,showEntries, yourBlogs, get
 
 app = Flask(__name__)
 create()
 
 # creates secret key for session
 app.secret_key = os.urandom(32)
+
+currentUser = ""
 
 # redirects to login page if no user logged in
 # redirects to welcome page if user logged in
@@ -52,6 +54,7 @@ def auth():
         # if correct username/password combination, add username to session and redirect to welcome route
         if checkUser(request.form['username'], request.form['password']):
             session['username'] = request.form['username']
+            currentUser = request.form['username']
             return redirect(url_for('welcome'))
         # if invalid password return error
         else:
@@ -86,13 +89,17 @@ def yourBlog():
     blogNum = getBlogNumber(username,blogName)
     entries = showEntries(blogNum)
     render_template("yourBlog.html",topic = blogName,topicEntries = entries)
-    
+
 
 # To view other people's blogs
 @app.route("/otherBlog")
 def otherBlog():
     #create dictionary to transfer data to html
-    return render_template("otherBlog.html")
+    #create dictionary to transfer data to html
+    blogDict = {}
+    for row in createOtherBlogList(currentUser):
+        blogDict[row[0]] = row[1]
+    return render_template("otherBlog.html", allBlogs = blogDict)
 
 #View Blogs that match your search
 @app.route("/blogsYouSearched")
@@ -112,9 +119,19 @@ def checkCreate():
     if (request.args['password'] == request.args['confirmPassword']):
         addUser(request.args['username'],request.args['displayName'],request.args['password'])
         session['username'] = request.args['username']
+        currentUser = request.args['username']
         return render_template("login.html")
     else:
         return render_template("createAccount.html", userError = "***Passwords don't match")
+
+@app.route("/<blogID>/<blogTopic>")
+def displayEntry(blogID, blogTopic):
+    info = get(blogID,blogTopic)
+    print(info)
+    c = info[3]
+    t = info[1]
+    e = info[2]
+    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e))
 
 if __name__ == "__main__":
     app.debug = True

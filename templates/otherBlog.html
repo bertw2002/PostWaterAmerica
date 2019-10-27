@@ -12,6 +12,10 @@
       <input type ="text" name="yourSearch">
       <input type ="submit" name= "Submit">
     </form>
+    {% for key in allBlogs %}
+      <a href="{{url_for('displayEntry',blogID = key,blogTopic = allBlogs.get(key))}}">{{allBlogs.get(key)}}</a>
+      <br>
+    {% endfor %}
   </body>
 </center>
 </html>
