@@ -63,3 +63,7 @@ Successfully displayed links of other users' blogs. Each link brings the user to
 chowdhuryB --2019 -13:51
 Added back to blogs button when viewing your blog
 Fixed bugs when viewing your blogs 
+
+chinK -- 2019-10-25 16:33
+Added a navigation bar to make nagivation the webpages easier
+Added getUsername
