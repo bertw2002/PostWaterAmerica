@@ -145,6 +145,14 @@ def get(ID, topic):
     info = cur.fetchone()
     return info
 
+def getDisplayname(username):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT displayName FROM users WHERE username == ?;", [str(username),])
+    info = cur.fetchone()
+    return info[0]
+# create()
 def update(ID, topic, newEntry):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)

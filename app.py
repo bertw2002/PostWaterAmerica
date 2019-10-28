@@ -11,7 +11,7 @@ from flask import url_for
 import os
 import sqlite3
 
-from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get, update
+from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get, update, getDisplayname
 
 
 app = Flask(__name__)
@@ -141,7 +141,7 @@ def yourBlog():
 def displayEntry(blogID, blogTopic):
     info = get(blogID,blogTopic)
     print(info)
-    c = info[3]
+    c = getDisplayname(info[3])
     t = info[1]
     e = info[2]
     i = info[0]
