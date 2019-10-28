@@ -67,3 +67,6 @@ Fixed bugs when viewing your blogs
 chinK -- 2019-10-25 16:33
 Added a navigation bar to make nagivation the webpages easier
 Added getUsername
+
+chenB -- 2019-10-27 22:34
+Worked on editing your own blog entry. Was able to check current user with the creator of the blog and if they match, a button to edit should appear bring the user to a form. The form then updates the table and redirect to the list of all blogs.
