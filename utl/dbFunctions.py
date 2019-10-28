@@ -160,7 +160,8 @@ def update(ID, topic, newEntry):
     print(ID)
     print(newEntry)
     print(topic)
-    cur=c.execute("UPDATE blogs SET entry = ? WHERE blogNumber == ? and blogName == ?;", [str(newEntry), str(ID), str(topic)])
+    c.execute("UPDATE blogs SET entry = ? WHERE blogNumber = ? and blogName = ?;", [str(newEntry), str(ID), str(topic)])
+    db.commit()
 
 create()
 # check()
