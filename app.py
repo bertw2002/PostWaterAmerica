@@ -145,7 +145,7 @@ def displayEntry(blogID, blogTopic):
     t = info[1]
     e = info[2]
     i = info[0]
-    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e), cUser='test', id = i)
+    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e), cUser=session['username'], id = i)
 
 @app.route("/editBlog/<blogID>/<blogTopic>")
 def edit(blogID, blogTopic):
