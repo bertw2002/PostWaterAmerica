@@ -17,7 +17,7 @@
 
 ## Run the Project
 - First, you will need to clone the repository. You can do this by going into terminal and typing `git clone git@github.com:bertw2002/PostWaterAmerica.git`
-- Then, cd into the cloned repository and execute `python3 app.py`
+- Then, cd into the cloned repository and execute `python3 app.py` Now you're set!
 
 
 ## Navigating the webpage
