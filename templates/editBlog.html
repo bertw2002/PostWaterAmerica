@@ -10,7 +10,7 @@
   {{topic}} <br>
     <form action="{{url_for('edit2',blogID = ID, blogTopic = topic)}}" Method="POST">
       <label for="newEntry">New Entry:</label>
-      <input type="text" name ="newEntry" size = "120">
+      <input type="text" name ="newEntry" size = "120" value = "{{oldEntry}}">
       <input type="submit" name="createEntry" value="Create">
     </form>
   </body>

@@ -150,7 +150,8 @@ def displayEntry(blogID, blogTopic):
 @app.route("/editBlog/<blogID>/<blogTopic>")
 def edit(blogID, blogTopic):
     info = get(blogID, blogTopic)
-    return render_template("editBlog.html", topic = info[1], ID = blogID)
+    print(info[2])
+    return render_template("editBlog.html", topic = info[1], ID = blogID, oldEntry = str(info[2]))
 
 @app.route("/editBlog2/<blogID>/<blogTopic>",methods=["POST","GET"])
 def edit2(blogID, blogTopic):
