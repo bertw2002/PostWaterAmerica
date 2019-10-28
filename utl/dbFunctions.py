@@ -69,7 +69,7 @@ def noRepeatBlogs(username,blogName):
     cur = c.execute("SELECT blogName FROM blogs WHERE creator = ?",(str(username),))
     yourBlogs = cur.fetchall()
     db.commit()
-    db.close()  
+    db.close()
     for blog in yourBlogs:
         if blogName == blog:
             return False
@@ -144,6 +144,15 @@ def get(ID, topic):
     cur = c.execute("SELECT * FROM blogs WHERE blogNumber == ? and blogName == ?;", [str(ID), str(topic)])
     info = cur.fetchone()
     return info
+
+def update(ID, topic, newEntry):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    print(ID)
+    print(newEntry)
+    print(topic)
+    cur=c.execute("UPDATE blogs SET entry = ? WHERE blogNumber == ? and blogName == ?;", [str(newEntry), str(ID), str(topic)])
 
 create()
 # check()

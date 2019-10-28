@@ -11,7 +11,7 @@ from flask import url_for
 import os
 import sqlite3
 
-from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get
+from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get, update
 
 
 app = Flask(__name__)
@@ -99,7 +99,7 @@ def otherBlog():
 @app.route("/blogsYouSearched")
 def searchedBlogs():
     yourSearch= request.args['yourSearch']
-    return 
+    return
 
 
 @app.route("/checkCreate")
@@ -119,7 +119,7 @@ def checkCreate():
 def createTopic():
     print(session)
     return render_template("createTopic.html")
-    
+
 #View one of your blogs
 @app.route("/yourBlog",methods=["POST","GET"])
 def yourBlog():
@@ -144,7 +144,19 @@ def displayEntry(blogID, blogTopic):
     c = info[3]
     t = info[1]
     e = info[2]
-    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e))
+    i = info[0]
+    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e), cUser='test', id = i)
+
+@app.route("/editBlog/<blogID>/<blogTopic>")
+def edit(blogID, blogTopic):
+    info = get(blogID, blogTopic)
+    return render_template("editBlog.html", topic = info[1], ID = blogID)
+
+@app.route("/editBlog2/<blogID>/<blogTopic>",methods=["POST","GET"])
+def edit2(blogID, blogTopic):
+    entry = request.form['newEntry']
+    update(blogID,blogTopic,entry)
+    return redirect("/otherBlog")
 
 if __name__ == "__main__":
     app.debug = True

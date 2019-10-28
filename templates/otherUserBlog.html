@@ -9,7 +9,10 @@
     <center>
     <b>{{topic}}</b> <br> <br>
     Created by: {{creator}} <br> <br>
-    {{entry}}
+    {{entry}} <br>
+    {% if cUser == creator %}
+      <a href="{{url_for('edit',blogID = id, blogTopic=topic)}}">Edit Entry</a>
+    {% endif %}
     </center>
   </body>
 </html>

@@ -1,0 +1,24 @@
+
+<html>
+<center>
+  <head>
+    <title>Edit Blog</title>
+  </head>
+  <body>
+    <h1>Edit Blog</h1>
+    <div class="topnav">
+      <a href="welcome">Home</a>
+      <a href="createTopic">Create a Topic</a>
+      <a href="otherBlog">Look At Other Blogs</a>
+      <a href="logout">Log Out</a>
+</div>
+<br>
+  {{topic}} <br>
+    <form action="{{url_for('edit2',blogID = ID, blogTopic = topic)}}" Method="POST">
+      <label for="newEntry">New Entry:</label>
+      <input type="text" name ="newEntry" size = "120">
+      <input type="submit" name="createEntry" value="Create">
+    </form>
+  </body>
+</center>
+</html>
