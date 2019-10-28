@@ -38,12 +38,17 @@ chinK -- 2019-10-25 00:25
 fixed addUser so that everytime the form for createAccount is submitted, the user input gets added to the database
 added checkUsername function to test if username is taken
 
+wanA -- 2019-10-25 20:40
+Fixed error in Error page and made the title of the error page more concise and easier to see. I also touched up on homepage.html by fixing a typo. 
+
 chowdhuryB -- 2019- 07:43
 Added to checkCreate function so that it goes through the existing users and prevents creation of accounts with duplicate usernames
 
-
 chinK -- 2019-10-25 14:02
 added verifyUser functino to test if the user and password match to the creditionals in the users tables. Also fixed html to print correct text if the username is taken or if the passwords do not match
+
+wanA -- 2019-10-26 18:04
+Added design.pdf by making the doc into a pdf. 
 
 chowdhuryB -- 2019 -12:20
 added to dbFunctions and app.py, allowing user to view their blogs, implementing jinja to allow the blog page to display all entries in that blog
