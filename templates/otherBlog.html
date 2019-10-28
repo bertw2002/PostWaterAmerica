@@ -14,11 +14,11 @@
       <a href="logout">Log Out</a>
 </div>
 <br>
-    <h3>Look up a blog:</h3>
+    <!-- <h3>Look up a blog:</h3>
     <form action="/blogsYouSearched" method="POST">
       <input type ="text" name="yourSearch">
       <input type ="submit" name= "Submit">
-    </form>
+    </form> -->
     {% for key in allBlogs %}
       <a href="{{url_for('displayEntry',blogID = key,blogTopic = allBlogs.get(key))}}">{{allBlogs.get(key)}}</a>
       <br>
