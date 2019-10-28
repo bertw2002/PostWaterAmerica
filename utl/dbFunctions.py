@@ -37,7 +37,7 @@ def addBlog(blogTopic, entry, creator):
     blogNumber = 0;
     for blognum in allBlogNumbers:
         if (len(allBlogNumbers) != 0):
-            blogNumber = blognum[0] + 1
+            blogNumber = blogNumber + 1
     c.execute("INSERT INTO blogs VALUES (?, ?, ?,?)", (int(blogNumber), str(blogTopic), str(entry), str(creator)))
     db.commit()
     db.close()
@@ -100,7 +100,7 @@ def showEntries(blognumber):
     db.close()
     print(allEntries)
     for entry in allEntries:
-        entries.append(entry)
+        entries.append(entry[0])
     return entries
 
 def getBlogNumber(username,blogtitle):
