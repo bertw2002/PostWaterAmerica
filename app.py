@@ -11,7 +11,7 @@ from flask import url_for
 import os
 import sqlite3
 
-from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get
+from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get, getDisplayname
 
 
 app = Flask(__name__)
@@ -99,7 +99,7 @@ def otherBlog():
 @app.route("/blogsYouSearched")
 def searchedBlogs():
     yourSearch= request.args['yourSearch']
-    return 
+    return
 
 
 @app.route("/checkCreate")
@@ -119,7 +119,7 @@ def checkCreate():
 def createTopic():
     print(session)
     return render_template("createTopic.html")
-    
+
 #View one of your blogs
 @app.route("/yourBlog",methods=["POST","GET"])
 def yourBlog():
@@ -141,10 +141,10 @@ def yourBlog():
 def displayEntry(blogID, blogTopic):
     info = get(blogID,blogTopic)
     print(info)
-    c = info[3]
+    c = getDisplayname(info[3])
     t = info[1]
     e = info[2]
-    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e))
+    return render_template("otherUserBlog.html", creator = c, topic = str(t), entry = str(e))
 
 if __name__ == "__main__":
     app.debug = True
