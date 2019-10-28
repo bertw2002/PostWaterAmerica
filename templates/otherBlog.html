@@ -22,6 +22,7 @@
     {% for key in allBlogs %}
       <a href="{{url_for('displayEntry',blogID = key,blogTopic = allBlogs.get(key))}}">{{allBlogs.get(key)}}</a>
       <br>
+
     {% endfor %}
   </body>
 </center>
