@@ -70,3 +70,6 @@ Added getUsername
 
 chenB -- 2019-10-27 22:34
 Worked on editing your own blog entry. Was able to check current user with the creator of the blog and if they match, a button to edit should appear bring the user to a form. The form then updates the table and redirect to the list of all blogs.
+
+wanA -- 2019-10-28 00:00
+Added new design doc. We decided to change to edit our own blogs instead of others editing other blogs.
