@@ -25,14 +25,15 @@
 - Once you create an account, you can creat your own blogs and view other people's blogs.
 
 ## Modules and Libraries
-'''
+```
 -from flask import Flask
 -from flask import render_template
 -from flask import request
 -from flask import session
 -from flask import redirect
 -from flask import url_for
-'''
+```
+
 -Flask
 http://flask.palletsprojects.com/en/1.1.x/
 We used this to create a website hosted by a local server and is the main component of the project. It uses different routes to navigate around.
