@@ -20,6 +20,7 @@ def create():
     db.commit()
     db.close()
 
+#Adds a user to the users table given user's input
 def addUser(username,displayName,password):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
@@ -42,6 +43,7 @@ def addBlog(blogTopic, entry, creator):
     db.commit()
     db.close()
 
+#checks if the login creditionals are valid
 def checkUser(username, password):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
@@ -75,6 +77,7 @@ def noRepeatBlogs(username,blogName):
             return False
     return True
 
+#checks if username is taken
 def checkUsername(username):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)
@@ -85,6 +88,20 @@ def checkUsername(username):
     db.close()
     for row in usernames:
         if username in row:
+            return True
+    return False
+
+#checks if the displyname is taken
+def checkDisplayname(displayName):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT displayName FROM users")
+    displayNames = cur.fetchall()
+    db.commit()
+    db.close()
+    for row in displayNames:
+        if displayName in row:
             return True
     return False
 
@@ -145,6 +162,16 @@ def get(ID, topic):
     info = cur.fetchone()
     return info
 
+# returns username givin displayname
+def getUsername(displayName):
+    DB_FILE = "blogs.db"
+    db = connect(DB_FILE)
+    c = db.cursor()
+    cur = c.execute("SELECT username FROM users WHERE displayName == ?;", [str(displayName),])
+    info = cur.fetchone()
+    return info[0]
+
+#returns displayname givin username
 def getDisplayname(username):
     DB_FILE = "blogs.db"
     db = connect(DB_FILE)

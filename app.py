@@ -12,7 +12,7 @@ import os
 import sqlite3
 
 #imports functions from dbfunctions.py
-from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get, update, getDisplayname
+from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get, update, getDisplayname,checkDisplayname,getUsername
 
 
 app = Flask(__name__)
@@ -105,6 +105,8 @@ def searchedBlogs():
 
 @app.route("/checkCreate")
 def checkCreate():
+    if checkDisplayname(request.args['displayName']):
+            return render_template("createAccount.html", userError = "***That display name is already in use, try a different one")
     if checkUsername(request.args['username']):
             return render_template("createAccount.html", userError = "***That username is already in use, try a different one")
 #confirms password, allowing user to not make mistakes while putting in password
@@ -153,8 +155,12 @@ def displayEntry(blogID, blogTopic):
     t = info[1]
     e = info[2]
     i = info[0]
+    if session['username'] == info[3]:
+        access = True
+    else:
+        access = False
     #goes to otheruserblog.html to allow these changes.
-    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e), cUser=session['username'], id = i)
+    return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e), yes = access, id = i)
 
 @app.route("/editBlog/<blogID>/<blogTopic>")
 #edit function that allows user to edit.
