@@ -73,3 +73,7 @@ Worked on editing your own blog entry. Was able to check current user with the c
 
 wanA -- 2019-10-28 00:00
 Added new design doc. We decided to change to edit our own blogs instead of others editing other blogs.
+
+chinK -- 2019-10-28  23:26
+Fix minor bugs in displaying an edit option for a logged in user
+Added a checkDisplayName to see if a given displayname is already taken
