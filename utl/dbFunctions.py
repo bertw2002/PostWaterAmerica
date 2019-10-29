@@ -35,10 +35,13 @@ def addBlog(blogTopic, entry, creator):
     c = db.cursor()
     cur = c.execute("SELECT MAX(blogNumber) FROM blogs")
     allBlogNumbers = cur.fetchall()
+    tup = allBlogNumbers[0]
+    currentInt = tup[0]
     blogNumber = 0;
-    for blognum in allBlogNumbers:
+    while(currentInt != -1):
         if (len(allBlogNumbers) != 0):
             blogNumber = blogNumber + 1
+        currentInt -= 1;
     c.execute("INSERT INTO blogs VALUES (?, ?, ?,?)", (int(blogNumber), str(blogTopic), str(entry), str(creator)))
     db.commit()
     db.close()
