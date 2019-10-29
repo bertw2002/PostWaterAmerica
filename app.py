@@ -11,6 +11,7 @@ from flask import url_for
 import os
 import sqlite3
 
+#imports functions from dbfunctions.py
 from utl.dbFunctions import create, addUser, checkUsername, checkUser, getBlogNumber,showEntries, yourBlogs, noRepeatBlogs, addBlog, createOtherBlogList, get, update, getDisplayname
 
 
@@ -106,12 +107,16 @@ def searchedBlogs():
 def checkCreate():
     if checkUsername(request.args['username']):
             return render_template("createAccount.html", userError = "***That username is already in use, try a different one")
+#confirms password, allowing user to not make mistakes while putting in password
     if (request.args['password'] == request.args['confirmPassword']):
         addUser(request.args['username'],request.args['displayName'],request.args['password'])
+
         session['username'] = request.args['username']
         currentUser = request.args['username']
+        #goes back to login.html
         return render_template("login.html")
     else:
+        #if passwords don't match, go back to createaccount.html
         return render_template("createAccount.html", userError = "***Passwords don't match")
 
 # To create a topic
@@ -125,9 +130,11 @@ def createTopic():
 def yourBlog():
     print(request.form)
     print(session)
+    #stores username and password using session function
     username = session.get('username')
     blogName = request.form.get('blogName')
     if noRepeatBlogs(username,blogName):
+        #forms entry. People can add entries too.
         if 'newEntry' in request.form.keys():
             entry = request.form['newEntry']
             addBlog(blogName,entry,username)
@@ -139,21 +146,25 @@ def yourBlog():
 
 @app.route("/<blogID>/<blogTopic>")
 def displayEntry(blogID, blogTopic):
+    #displays entry with ability to edit their own blogs, not others. They can add entries to their own blogs.
     info = get(blogID,blogTopic)
     print(info)
     c = getDisplayname(info[3])
     t = info[1]
     e = info[2]
     i = info[0]
+    #goes to otheruserblog.html to allow these changes.
     return render_template("otherUserBlog.html", creator = str(c), topic = str(t), entry = str(e), cUser=session['username'], id = i)
 
 @app.route("/editBlog/<blogID>/<blogTopic>")
+#edit function that allows user to edit.
 def edit(blogID, blogTopic):
     info = get(blogID, blogTopic)
     print(info[2])
     return render_template("editBlog.html", topic = info[1], ID = blogID, oldEntry = str(info[2]))
 
 @app.route("/editBlog2/<blogID>/<blogTopic>",methods=["POST","GET"])
+#edit2 comes into play when user actually submits edit entry form, redirecting to blog page.
 def edit2(blogID, blogTopic):
     entry = request.form['newEntry']
     update(blogID,blogTopic,entry)
